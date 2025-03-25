@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 Email Classification System
 
 ## 📌 Table of Contents
 - [Introduction](#introduction)
@@ -11,29 +11,41 @@
 - [Tech Stack](#tech-stack)
 - [Team](#team)
 
----
 
 ## 🎯 Introduction
-A brief overview of your project and its purpose. Mention which problem statement are your attempting to solve. Keep it concise and engaging.
+This project is an **AI-powered email classification system** that helps automate the categorization of emails based on predefined rules. It utilizes **FastAPI** as the backend and integrates an **LLM (Large Language Model)** to classify emails into structured types.
+
+The project aims to **simplify email processing** by automating classification, making it easier for organizations to handle large volumes of incoming messages efficiently.
 
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable)  
 📹 [Video Demo](#) (if applicable)  
 🖼️ Screenshots:
 
-![Screenshot 1](link-to-image)
+![Screenshot 1](#)
 
 ## 💡 Inspiration
-What inspired you to create this project? Describe the problem you're solving.
+Manually sorting and responding to emails is **time-consuming** and inefficient, especially in organizations that receive thousands of emails daily. Our goal was to build an AI-powered **email classification tool** that can analyze emails and categorize them based on **business rules** while being **easy to deploy and scale**.
 
 ## ⚙️ What It Does
-Explain the key features and functionalities of your project.
+- **Extracts email content** (subject, body, attachments) from `.eml` files.
+- **Processes rules provided by the user** to classify emails.
+- **Uses an LLM (Large Language Model)** to categorize emails into request types.
+- **Stores classification results** for easy retrieval.
+- **FastAPI backend** to manage API requests.
 
 ## 🛠️ How We Built It
-Briefly outline the technologies, frameworks, and tools used in development.
+- **FastAPI** for backend development.
+- **LLM (via API or local model)** for classification.
+- **Python's email package** for `.eml` parsing.
+- **Database (PostgreSQL / JSON storage)** for rules & classification storage.
+- **Docker** for easy deployment.
 
 ## 🚧 Challenges We Faced
-Describe the major technical or non-technical challenges your team encountered.
+- **Generating a realistic email dataset** since no sample data was provided.
+- **Designing effective LLM prompts** for classification accuracy.
+- **Deciding between a single agent vs multiple agents** for handling classification logic.
+- **Optimizing the email extraction and preprocessing pipeline.**
 
 ## 🏃 How to Run
 1. Clone the repository  
@@ -42,19 +54,24 @@ Describe the major technical or non-technical challenges your team encountered.
    ```
 2. Install dependencies  
    ```sh
-   npm install  # or pip install -r requirements.txt (for Python)
+   pip install -r requirements.txt
    ```
-3. Run the project  
+3. Start the FastAPI backend  
    ```sh
-   npm start  # or python app.py
+   uvicorn main:app --reload
    ```
+4. Test the API using [Swagger UI](http://127.0.0.1:8000/docs)
 
 ## 🏗️ Tech Stack
-- 🔹 Frontend: React / Vue / Angular
-- 🔹 Backend: Node.js / FastAPI / Django
-- 🔹 Database: PostgreSQL / Firebase
-- 🔹 Other: OpenAI API / Twilio / Stripe
+- 🔹 **Backend**: FastAPI (Python)
+- 🔹 **AI Model**: Google Gemini / HuggingFace
+- 🔹 **Database**: MongoDB / JSON Storage
 
 ## 👥 Team
-- **Your Name** - [GitHub](#) | [LinkedIn](#)
-- **Teammate 2** - [GitHub](#) | [LinkedIn](#)
+- **Vaibhav Kumar** - [GitHub](#) | [LinkedIn](#)
+- **Sahethi DG** - [GitHub](#) | [LinkedIn](#)
+
+---
+
+Let us know if you have any questions or need any modifications!
+
