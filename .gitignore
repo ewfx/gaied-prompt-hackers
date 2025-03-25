@@ -172,3 +172,20 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Environment variables and secrets
+.env.local
+.env.*.local
+*.env
+
+# Temporary files
+temp_storage/
+*.tmp
+.DS_Store

@@ -83,38 +83,7 @@ graph TD;
 ## 📂 Project Structure
 
 ```
-📂 project-root/
-│── 📂 src/
-│   ├── 📂 api/                 # API Endpoints
-│   │   ├── rules.py            # Endpoint for uploading rules
-│   │   ├── classify.py         # Endpoint for classifying emails
-│   │   ├── __init__.py
-│   │
-│   ├── 📂 services/            # Business Logic
-│   │   ├── rule_manager.py     # Manages rule storage and retrieval
-│   │   ├── email_parser.py     # Parses .eml files and extracts content
-│   │   ├── llm_client.py       # Calls the LLM for classification
-│   │   ├── __init__.py
-│   │
-│   ├── 📂 storage/             # Temporary In-Memory Storage
-│   │   ├── temp_store.py       # Stores parsed emails and rules
-│   │   ├── __init__.py
-│   │
-│   ├── 📂 utils/               # Utility Functions
-│   │   ├── file_handler.py     # Handles file uploads and parsing
-│   │   ├── response_formatter.py # Formats response for UI
-│   │   ├── __init__.py
-│   │
-│   ├── main.py                 # FastAPI entry point
-│   ├── config.py               # Configuration settings
-│   ├── requirements.txt        # Python dependencies
-│
-├── 📂 ui/                      # Frontend (if applicable)
-│   ├── index.html              # Dashboard UI
-│   ├── dashboard.js            # Handles API calls & UI updates
-│   ├── styles.css              # UI Styling
-│
-└── README.md                   # Project documentation
+
 ```
 
 ## 📌 Responsibilities & Workflow
