@@ -40,7 +40,6 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
 - **LLM (via API or local model)** for classification.
 - **Python's email package** for `.eml` parsing.
 - **OCR and file parsers** for extracting text from attachments.
-- **JSON storage** for rules & classification storage.
 
 ## 🚧 Challenges We Faced
 
@@ -228,7 +227,5 @@ graph TD;
 2. **POST /upload-email** → Upload an `.eml` file for processing
 
 ## 📌 Next Steps
-
-- Define structured API request/response formats
-- Implement core functionality first, refine later
-- Create UI dashboard with a button to display classification results in a modal
+- Persistent storage for past results
+- Improve the LLM classification by using agentic architecture
