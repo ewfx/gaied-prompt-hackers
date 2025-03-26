@@ -2,11 +2,12 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from services.rule_manager import rule_manager
-from services.classifier import classify_email
+from services.classifier import classify_emails
 import uvicorn
 import json
 import logging
 from email import message_from_bytes
+from typing import List
 
 app = FastAPI(title="Email Classification System")
 
@@ -52,24 +53,30 @@ async def upload_rules(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/upload-email")
-async def upload_email(file: UploadFile = File(...)):
+@app.post("/upload-emails")
+async def upload_emails(files: List[UploadFile] = File(...)):
+    responses = []
     try:
-        # Read the uploaded .eml file
-        content = await file.read()
-        email_message = message_from_bytes(content)
-        
-        # Classify the email using the Gemini model
-        classification_result = classify_email(email_message, classification_rules)
-        
-        return JSONResponse({
-            "status": "Email processed successfully",
-            "classification": classification_result
-        })
+        for file in files:
+            # Read the uploaded .eml file
+            content = await file.read()
+            email_message = message_from_bytes(content)
+            
+            # Classify the email using the Gemini model
+            classification_result = classify_emails([email_message], classification_rules)
+            
+            # Append the result for this email
+            responses.append({
+                "file_name": file.filename,
+                "status": "Email processed successfully",
+                "classification": classification_result
+            })
     except Exception as e:
-        logging.error(f"Error processing email: {str(e)}")
-        raise HTTPException(status_code=500, detail="An error occurred while processing the email.")
+        logging.error(f"Error processing emails: {str(e)}", exc_info=True)  # Log the full traceback
+        raise HTTPException(status_code=500, detail="An error occurred while processing the emails.")
     
+    return JSONResponse(responses)
+
 def extract_email_body(email_message):
     email_body = ""
     if email_message.is_multipart():

@@ -1,36 +1,50 @@
-Return-Path: <mlemos@acm.org>
-To: Manuel Lemos <mlemos@linux.local>
-Subject: Testing MIME and PHP class functionality with embedded images
-From: mlemos <mlemos@acm.org>
-Reply-To: mlemos <mlemos@acm.org>
-Sender: mlemos@acm.org
-X-Mailer: http://www.phpclasses.org/mimemessage $Revision: 1.63 $ (mail)
+Return-Path: <sender@example.com>
+To: recipient@example.com
+Subject: Fwd: Request for Adjustment and Fee Payment
+From: sender@example.com
+Reply-To: sender@example.com
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="652b8c4dcb00cdcdda1e16af36781caf"
-Message-ID: <20050430192829.0489.mlemos@acm.org>
-Date: Sat, 30 Apr 2005 19:28:29 -0300
+Content-Type: multipart/mixed; boundary="boundary123"
 
---652b8c4dcb00cdcdda1e16af36781caf
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+--boundary123
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This is a test email to demonstrate MIME and PHP class functionality. It includes an HTML message and an embedded image.
+Forwarded message:
 
---652b8c4dcb00cdcdda1e16af36781caf
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Hello Team,
 
-<html>
-<head>
-<title>Testing MIME and PHP class functionality</title>
-</head>
-<body>
-<p>This email demonstrates the use of MIME and PHP class for composing and sending emails. It includes:</p>
-<ul>
-  <li>An <b>HTML message</b>.</li>
-  <li>An <b>embedded image</b>.</li>
-</ul>
-<p>Thank you,<br>mlemos</p>
-</body>
-</html>
---652b8c4dcb00cdcdda1e16af36781caf--
+I would like to request the following:
+
+1. Adjustment of the principal amount for the loan account ending in 1234.
+2. Payment of the reallocation fees for the same account.
+
+Please prioritize the adjustment request as it is more urgent. The details of the requested changes are attached in the document.
+
+Best regards,  
+John Doe
+
+--boundary123
+Content-Type: application/pdf; name="adjustment_details.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="adjustment_details.pdf"
+
+JVBERi0xLjQKJaqrrK0KNCAwIG9iago8PC9UeXBlL1BhZ2UvUGFyZW50IDMgMCBSL1Jlc291cmNl
+cyA8PC9YT2JqZWN0PDwvSW1nMSA1IDAgUj4+Pj4vTWVkaWFCb3hbMCAwIDYxMiA3OTJdL0NvbnRl
+bnRzIDUgMCBSPj4KZW5kb2JqCjUgMCBvYmoKPDwvTGVuZ3RoIDYyPj4Kc3RyZWFtCkJUUC9UZXN0
+IERvY3VtZW50IFdpdGggU29tZSBOdW1lcmljYWwgRGF0YQoKZW5kc3RyZWFtCmVuZG9iago6IDAg
+b2JqCjw8L1R5cGUvWE9iamVjdC9TdWJ0eXBlL0ltYWdlL0JpdHNQZXJDb21wb25lbnQgOC9XaWR0
+aCAxMjgvSGVpZ2h0IDEyOC9Db2xvclNwYWNlL0RldmljZVJHQj4+CmVuZG9iagoKc3RhcnR4cmVm
+CjEwOQolJUVPRgo=
+
+--boundary123
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document; name="fee_payment_details.docx"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="fee_payment_details.docx"
+
+UEsDBBQAAAAIAAa1UkpAAAAAAAAAAAAAAAALABwAZmVlX3BheW1lbnRfZGV0YWlscy5kb2N4VVQJ
+AAO1r5tUta+bVHV4CwABBOgDAAAE6AMAAE1vcmUgZGV0YWlsZWQgaW5mb3JtYXRpb24gYWJvdXQg
+dGhlIHJlYWxsb2NhdGlvbiBmZWVzIGFuZCBwYXltZW50IHNjaGVkdWxlcy4KUEsBAhQAFAAAAAgA
+BrVSSgAAAAAAAAAAAAAAAAwAGAAAAAAAAAAQKSBAAAAAZmVlX3BheW1lbnRfZGV0YWlscy5kb2N4
+VVQFAAABta+bVHV4CwABBOgDAAAE6AMAAFBLAQIUABQAAAAIAAa1UkpAAAAAAAAAAAAAAAALABgA
+AAAAAAAAEApIEAAAAA=
