@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from services.rule_manager import rule_manager
+from services.classifier import classify_email
 import uvicorn
 import json
 import logging
@@ -50,8 +51,25 @@ async def upload_rules(file: UploadFile = File(...)):
         logging.error(f"Error uploading rules: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-logging.basicConfig(level=logging.INFO)
 
+@app.post("/upload-email")
+async def upload_email(file: UploadFile = File(...)):
+    try:
+        # Read the uploaded .eml file
+        content = await file.read()
+        email_message = message_from_bytes(content)
+        
+        # Classify the email using the Gemini model
+        classification_result = classify_email(email_message, classification_rules)
+        
+        return JSONResponse({
+            "status": "Email processed successfully",
+            "classification": classification_result
+        })
+    except Exception as e:
+        logging.error(f"Error processing email: {str(e)}")
+        raise HTTPException(status_code=500, detail="An error occurred while processing the email.")
+    
 def extract_email_body(email_message):
     email_body = ""
     if email_message.is_multipart():
@@ -73,39 +91,7 @@ def extract_email_body(email_message):
 
     return email_body
 
-@app.post("/upload-email")
-async def upload_email(file: UploadFile = File(...)):
-    try:
-        # Read the uploaded .eml file
-        content = await file.read()
-        email_message = message_from_bytes(content)
-        email_body = extract_email_body(email_message)
 
-        logging.info(f"Extracted email body: {email_body}")
-
-        # Convert the email body to lowercase for case-insensitive matching
-        email_body_lower = email_body.lower()
-
-        # Classify the email based on the rules
-        categories = []
-        for category, keywords in classification_rules.items():
-            logging.info(f"Checking category: {category}, keywords: {keywords}")
-            if any(keyword.lower() in email_body_lower for keyword in keywords):
-                categories.append(category)
-
-        # If no categories match, classify as "uncategorized"
-        if not categories:
-            categories.append("uncategorized")
-
-        logging.info(f"Email classified into categories: {categories}")
-
-        return JSONResponse({
-            "status": "Email processed successfully",
-            "categories": categories
-        })
-    except Exception as e:
-        logging.error(f"Error processing email: {str(e)}")
-        raise HTTPException(status_code=500, detail="An error occurred while processing the email.")
 def main():
     uvicorn.run(app, host="0.0.0.0", port=8000)
 

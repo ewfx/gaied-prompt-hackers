@@ -1,0 +1,170 @@
+{
+  "classification_rules": [
+    {
+      "request_type": "Adjustment",
+      "sub_request_types": [
+        "Reallocation Fees",
+        "Amendment Fees",
+        "Reallocation Principal",
+        "Cashless Roll",
+        "Decrease",
+        "Increase",
+        "Ongoing Fee"
+      ],
+      "keywords": [
+        "adjust",
+        "reallocate",
+        "amend",
+        "roll",
+        "decrease",
+        "increase",
+        "ongoing",
+        "fee adjustment",
+        "principal adjustment"
+      ],
+      "description": "Requests related to modifying existing allocations, fees, or principal amounts."
+    },
+    {
+      "request_type": "AU Transfer",
+      "sub_request_types": [
+        "Reallocation Fees",
+        "Amendment Fees",
+        "Reallocation Principal",
+        "Cashless Roll"
+      ],
+      "keywords": [
+        "AU transfer",
+        "transfer AU",
+        "Australian transfer",
+        "reallocation fees AU",
+        "amendment fees AU",
+        "reallocation principal AU",
+        "cashless roll AU"
+      ],
+      "description": "Requests specifically related to transfers involving Australian entities or accounts, potentially involving reallocation of fees or principal, amendments, or cashless rolls."
+    },
+    {
+      "request_type": "Closing Notice",
+      "sub_request_types": [
+        "Decrease",
+        "Increase"
+      ],
+      "keywords": [
+        "closing notice",
+        "account closure",
+        "close account",
+        "termination notice",
+        "decrease on closure",
+        "increase on closure"
+      ],
+      "description": "Notifications or requests indicating the closure of an account or service, potentially involving a final decrease or increase in funds."
+    },
+    {
+      "request_type": "Commitment Change",
+      "sub_request_types": [
+        "Ongoing Fee",
+        "Letter of Credit Fee",
+        "Principal",
+        "Interest",
+        "Principal + Interest",
+        "Principal + Interest + Fee"
+      ],
+      "keywords": [
+        "commitment change",
+        "modify commitment",
+        "alter commitment",
+        "change commitment amount",
+        "ongoing fee change",
+        "letter of credit fee change",
+        "principal change",
+        "interest change",
+        "principal and interest change",
+        "all components change"
+      ],
+      "description": "Requests to modify the committed amount or terms of an agreement, potentially affecting ongoing fees, letter of credit fees, principal, interest, or a combination thereof."
+    },
+    {
+      "request_type": "Fee Payment",
+      "sub_request_types": [
+        "Letter of Credit Fee",
+        "Principal",
+        "Interest",
+        "Principal + Interest",
+        "Principal + Interest + Fee",
+        "Timebound",
+        "Foreign Currency"
+      ],
+      "keywords": [
+        "fee payment",
+        "pay fee",
+        "letter of credit fee payment",
+        "principal payment",
+        "interest payment",
+        "pay principal",
+        "pay interest",
+        "pay principal and interest",
+        "pay principal, interest, and fee",
+        "timebound payment",
+        "foreign currency payment",
+        "payment in [currency]"
+      ],
+      "description": "Requests or notifications related to the payment of various types of fees, principal, or interest, potentially with time constraints or involving foreign currencies."
+    },
+    {
+      "request_type": "Money Movement - Inbound",
+      "sub_request_types": [
+        "Principal",
+        "Interest",
+        "Principal + Interest",
+        "Principal + Interest + Fee",
+        "Timebound",
+        "Foreign Currency"
+      ],
+      "keywords": [
+        "inbound money movement",
+        "deposit funds",
+        "receive money",
+        "fund account",
+        "transfer in",
+        "principal inflow",
+        "interest inflow",
+        "principal and interest inflow",
+        "all components inflow",
+        "timebound transfer in",
+        "foreign currency transfer in",
+        "deposit in [currency]",
+        "receive [currency]"
+      ],
+      "description": "Requests or notifications about money being transferred into an account, specifying the type of funds (principal, interest, etc.) and potentially involving time constraints or foreign currencies. Example from problem description: 'funding the share'."
+    },
+    {
+      "request_type": "Money Movement - Outbound",
+      "sub_request_types": [
+        "Principal",
+        "Interest",
+        "Principal + Interest",
+        "Principal + Interest + Fee",
+        "Timebound",
+        "Foreign Currency"
+      ],
+      "keywords": [
+        "outbound money movement",
+        "withdraw funds",
+        "send money",
+        "transfer out",
+        "disburse funds",
+        "payment request",
+        "principal outflow",
+        "interest outflow",
+        "principal and interest outflow",
+        "all components outflow",
+        "timebound transfer out",
+        "foreign currency transfer out",
+        "withdraw in [currency]",
+        "send [currency]"
+      ],
+      "description": "Requests to transfer or withdraw money from an account, specifying the type of funds (principal, interest, etc.) and potentially involving time constraints or foreign currencies."
+    }
+  ],
+  "general_instructions": "When classifying emails, first try to identify keywords related to the 'Request Type'. Once a potential 'Request Type' is identified, look for keywords that might indicate a specific 'Sub Request Type' within that category. If multiple potential Request Types are identified, consider the primary intent of the sender to determine the most appropriate classification. If an email discusses funding (as mentioned in the problem description), and there's no clear indication of it being an outbound movement, classify it as 'Money Movement - Inbound' with a potential sub-request type of 'Timebound' or 'Foreign Currency' if those keywords are present."
+}

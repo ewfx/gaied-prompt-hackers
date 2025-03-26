@@ -1,10 +1,26 @@
 import re
+import os
+import json
 from typing import Dict, List
 
 class RuleManager:
     """Manages email classification rules and performs email categorization."""
     def __init__(self):
         self.rules = {}
+        try:
+            # Look for rules.json in the same directory as this file
+            current_dir = os.path.dirname(__file__)
+            rules_path = os.path.join(current_dir, 'rules.json')
+            
+            if os.path.exists(rules_path):
+                with open(rules_path, 'r') as f:
+                    data = json.load(f)
+                    # Extract rules from the classification_rules array
+                    for rule in data.get('classification_rules', []):
+                        # Use request_type as key and keywords as values
+                        self.rules[rule['request_type']] = rule['keywords']
+        except Exception as e:
+            print(f"Error loading initial rules: {e}")
 
     def add_rules(self, new_rules: Dict[str, List[str]]) -> bool:
         """
