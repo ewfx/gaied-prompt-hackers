@@ -71,7 +71,6 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
    ```sh
    npm start
    ```
-6. Test the API using [Swagger UI](http://127.0.0.1:8000/docs).
 
 ## 🏗️ Tech Stack
 
