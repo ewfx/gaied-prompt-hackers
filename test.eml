@@ -1,0 +1,36 @@
+Return-Path: <mlemos@acm.org>
+To: Manuel Lemos <mlemos@linux.local>
+Subject: Testing MIME and PHP class functionality with embedded images
+From: mlemos <mlemos@acm.org>
+Reply-To: mlemos <mlemos@acm.org>
+Sender: mlemos@acm.org
+X-Mailer: http://www.phpclasses.org/mimemessage $Revision: 1.63 $ (mail)
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="652b8c4dcb00cdcdda1e16af36781caf"
+Message-ID: <20050430192829.0489.mlemos@acm.org>
+Date: Sat, 30 Apr 2005 19:28:29 -0300
+
+--652b8c4dcb00cdcdda1e16af36781caf
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+This is a test email to demonstrate MIME and PHP class functionality. It includes an HTML message and an embedded image.
+
+--652b8c4dcb00cdcdda1e16af36781caf
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<title>Testing MIME and PHP class functionality</title>
+</head>
+<body>
+<p>This email demonstrates the use of MIME and PHP class for composing and sending emails. It includes:</p>
+<ul>
+  <li>An <b>HTML message</b>.</li>
+  <li>An <b>embedded image</b>.</li>
+</ul>
+<p>Thank you,<br>mlemos</p>
+</body>
+</html>
+--652b8c4dcb00cdcdda1e16af36781caf--

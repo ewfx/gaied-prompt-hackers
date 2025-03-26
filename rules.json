@@ -1,0 +1,5 @@
+{
+  "html_messages": ["HTML message", "HTML capable", "HTML email"],
+  "technical": ["MIME", "PHP class", "composing", "sending", "email"],
+  "media": ["image embedded", "image", "embedded", "attachment"]
+}
