@@ -108,7 +108,7 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
 - Stores user-defined classification rules.
 - Maintains classification results for emails.
 
-### Frontend (Optional for PoC)
+### Frontend
 
 - Simple UI for uploading emails.
 - Displays classified results in an easy-to-read format.
@@ -117,7 +117,7 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
 
 ## 🛠 Components & Their Responsibilities
 
-### 🎛️ User Interface (Optional)
+### 🎛️ User Interface
 
 - Upload `.eml` files.
 - View classified emails in a structured manner.
