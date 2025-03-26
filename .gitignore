@@ -189,3 +189,4 @@ cython_debug/
 temp_storage/
 *.tmp
 .DS_Store
+node_modules/
