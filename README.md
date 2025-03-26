@@ -38,8 +38,7 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
 - **FastAPI** for backend development.
 - **LLM (via API or local model)** for classification.
 - **Python's email package** for `.eml` parsing.
-- **Database (PostgreSQL / JSON storage)** for rules & classification storage.
-- **Docker** for easy deployment.
+- **Database (PostgreSQL / JSON storage)** for rules & classification storage.(Future Work)
 
 ## 🚧 Challenges We Faced
 - **Generating a realistic email dataset** since no sample data was provided.
@@ -47,31 +46,11 @@ Manually sorting and responding to emails is **time-consuming** and inefficient,
 - **Deciding between a single agent vs multiple agents** for handling classification logic.
 - **Optimizing the email extraction and preprocessing pipeline.**
 
-## 🏃 How to Run
-1. Clone the repository  
-   ```sh
-   git clone https://github.com/your-repo.git
-   ```
-2. Install dependencies  
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Start the FastAPI backend  
-   ```sh
-   uvicorn main:app --reload
-   ```
-4. Test the API using [Swagger UI](http://127.0.0.1:8000/docs)
 
 ## 🏗️ Tech Stack
 - 🔹 **Backend**: FastAPI (Python)
-- 🔹 **AI Model**: Google Gemini / HuggingFace
-- 🔹 **Database**: MongoDB / JSON Storage
-
-## 👥 Team
-- **Vaibhav Kumar** - [GitHub](#) | [LinkedIn](#)
-- **Sahethi DG** - [GitHub](#) | [LinkedIn](#)
-
----
+- 🔹 **Frontend**: React (Material-UI)
+- 🔹 **AI Model**: Google Gemini
 
 Let us know if you have any questions or need any modifications!
 

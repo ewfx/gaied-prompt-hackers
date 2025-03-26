@@ -15,8 +15,8 @@
 - Stores user-defined classification rules.
 - Maintains classification results for emails.
 
-### Frontend (Optional for PoC)
-- Simple UI for uploading emails.
+### Frontend 
+- React based UI for uploading emails.
 - Displays classified results in an easy-to-read format.
 
 ---
@@ -41,7 +41,7 @@
   - Sub-type
   - Key details
 
-### 🗄️ Database / JSON Storage
+### 🗄️ Database / JSON Storage (Future Work)
 - Stores classification rules for the system.
 - Maintains processed email classifications for retrieval.
 
@@ -107,9 +107,7 @@ graph TD;
 2. **POST /upload-email** → Upload an `.eml` file for processing
 
 ## 📌 Next Steps
-
-- Define structured API request/response formats
-- Implement core functionality first, refine later
-- Create UI dashboard with a button to display classification results in a modal
+- Persistent storage for past results
+- Improve the LLM classification by using agentic architecture
 
 
