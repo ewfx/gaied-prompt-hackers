@@ -7,12 +7,15 @@ import {
   Button,
   TextField,
   CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
-function UploadRules() {
+function UploadRules({ setRulesUploaded }) {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State to control Snackbar visibility
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -23,6 +26,7 @@ function UploadRules() {
     e.preventDefault();
     if (!file) {
       setMessage("Please select a file to upload.");
+      setSnackbarOpen(true); // Show Snackbar for error
       return;
     }
 
@@ -36,11 +40,19 @@ function UploadRules() {
         formData
       );
       setMessage(response.data.status || "Rules uploaded successfully.");
+      setRulesUploaded(true); // Notify parent that rules are uploaded
+      setSnackbarOpen(true); // Show Snackbar for success
     } catch (error) {
       setMessage("Error uploading rules. Please try again.");
+      setRulesUploaded(false); // Reset the status on failure
+      setSnackbarOpen(true); // Show Snackbar for error
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false); // Close the Snackbar
   };
 
   return (
@@ -70,15 +82,22 @@ function UploadRules() {
             {isLoading ? <CircularProgress size={24} /> : "Upload"}
           </Button>
         </form>
-        {message && (
-          <Typography
-            variant="body1"
-            color={message.includes("Error") ? "error" : "primary"}
-            style={{ marginTop: "10px" }}
+
+        {/* Snackbar for success or error messages */}
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={5000} // Automatically hide after 5 seconds
+          onClose={handleSnackbarClose}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={message.includes("Error") ? "error" : "success"}
+            sx={{ width: "100%" }}
           >
             {message}
-          </Typography>
-        )}
+          </Alert>
+        </Snackbar>
       </CardContent>
     </Card>
   );

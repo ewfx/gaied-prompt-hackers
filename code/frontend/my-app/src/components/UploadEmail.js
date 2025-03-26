@@ -10,13 +10,19 @@ import {
   List,
   ListItem,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Tooltip,
 } from "@mui/material";
 
-function UploadEmail() {
+function UploadEmail({ rulesUploaded }) {
   const [file, setFile] = useState(null);
   const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false); // State to control the modal
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -28,6 +34,7 @@ function UploadEmail() {
     e.preventDefault();
     if (!file) {
       setMessage("Please select a file to upload.");
+      setOpen(true); // Open the modal to show the message
       return;
     }
 
@@ -46,7 +53,12 @@ function UploadEmail() {
       setMessage("Error processing email. Please try again.");
     } finally {
       setIsLoading(false);
+      setOpen(true); // Open the modal to show the response
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false); // Close the modal
   };
 
   return (
@@ -65,38 +77,59 @@ function UploadEmail() {
             fullWidth
             variant="outlined"
             margin="normal"
+            disabled={!rulesUploaded} // Disable file input if rules are not uploaded
           />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={isLoading}
+          <Tooltip
+            title={
+              !rulesUploaded ? "Please upload classification rules first." : ""
+            }
+            arrow
           >
-            {isLoading ? <CircularProgress size={24} /> : "Upload"}
-          </Button>
+            <span>
+              {/* Wrapping Button in a span to handle disabled tooltip */}
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                disabled={!rulesUploaded || isLoading} // Disable button if rules are not uploaded or loading
+              >
+                {isLoading ? <CircularProgress size={24} /> : "Upload"}
+              </Button>
+            </span>
+          </Tooltip>
         </form>
-        {message && (
-          <Typography
-            variant="body1"
-            color={message.includes("Error") ? "error" : "primary"}
-            style={{ marginTop: "10px" }}
-          >
-            {message}
-          </Typography>
-        )}
-        {categories.length > 0 && (
-          <div style={{ marginTop: "20px" }}>
-            <Typography variant="h6">Categories:</Typography>
-            <List>
-              {categories.map((category, index) => (
-                <ListItem key={index}>
-                  <ListItemText primary={category} />
-                </ListItem>
-              ))}
-            </List>
-          </div>
-        )}
+
+        {/* Modal to display the response */}
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+          <DialogTitle>Response</DialogTitle>
+          <DialogContent>
+            <Typography
+              variant="body1"
+              color={message.includes("Error") ? "error" : "primary"}
+              gutterBottom
+            >
+              {message}
+            </Typography>
+            {categories.length > 0 && (
+              <div>
+                <Typography variant="h6">Categories:</Typography>
+                <List>
+                  {categories.map((category, index) => (
+                    <ListItem key={index}>
+                      <ListItemText primary={category} />
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </CardContent>
     </Card>
   );
