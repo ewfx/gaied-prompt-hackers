@@ -15,12 +15,14 @@ import {
   DialogContent,
   DialogActions,
   Tooltip,
+  Box,
 } from "@mui/material";
 
 function UploadEmail({ rulesUploaded }) {
   const [file, setFile] = useState(null);
   const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState("");
+  const [classification, setClassification] = useState(null); // State to store classification details
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false); // State to control the modal
 
@@ -28,6 +30,7 @@ function UploadEmail({ rulesUploaded }) {
     setFile(e.target.files[0]);
     setMessage("");
     setCategories([]);
+    setClassification(null);
   };
 
   const handleSubmit = async (e) => {
@@ -47,8 +50,16 @@ function UploadEmail({ rulesUploaded }) {
         "http://localhost:8000/upload-email",
         formData
       );
+
+      // Parse the response
       setCategories(response.data.categories || []);
       setMessage(response.data.status || "Email processed successfully.");
+
+      // Extract and parse the classification part
+      const classificationData = JSON.parse(
+        response.data.classification.replace(/```json|```/g, "").trim()
+      );
+      setClassification(classificationData.classification || null);
     } catch (error) {
       setMessage("Error processing email. Please try again.");
     } finally {
@@ -111,8 +122,29 @@ function UploadEmail({ rulesUploaded }) {
             >
               {message}
             </Typography>
+
+            {/* Display classification details */}
+            {classification && (
+              <Box mt={2}>
+                <Typography variant="h6" gutterBottom>
+                  Classification Details:
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Request Type:</strong> {classification.request_type}
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Sub-Request Type:</strong>{" "}
+                  {classification.sub_request_type}
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Reasoning:</strong> {classification.reasoning}
+                </Typography>
+              </Box>
+            )}
+
+            {/* Display categories if available */}
             {categories.length > 0 && (
-              <div>
+              <Box mt={2}>
                 <Typography variant="h6">Categories:</Typography>
                 <List>
                   {categories.map((category, index) => (
@@ -121,7 +153,7 @@ function UploadEmail({ rulesUploaded }) {
                     </ListItem>
                   ))}
                 </List>
-              </div>
+              </Box>
             )}
           </DialogContent>
           <DialogActions>
