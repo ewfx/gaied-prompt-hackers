@@ -43,11 +43,11 @@ def classify_email(email_message, classification_rules):
 
     email_content = f"Subject: {subject}\n\n{email_body}"
     
-    # Format classification rules for the prompt
-    classification_info = "\n".join([
-        f"- {category}: {', '.join(keywords)}"
-        for category, keywords in classification_rules.items()
-    ])
+    # # Format classification rules for the prompt
+    # classification_info = "\n".join([
+    #     f"- {category}: {', '.join(keywords)}"
+    #     for category, keywords in classification_rules.items()
+    # ])
 
     gemini_input = {
         "system_instructions": f"""You are an intelligent AI model designed to classify emails and extract specific information based on predefined request types and sub-request types. Your task is to analyze the provided email content and attachments (if any) and perform the following steps:
@@ -64,9 +64,9 @@ def classify_email(email_message, classification_rules):
      - [Add other configurable fields here as needed]
    - If a field is not found, indicate that it's 'Not Found'.
 
-**Predefined Request Types and Sub-Request Types:**
+**Here are the classification rules:**
 
-{classification_info}
+{classification_rules}
 
 **Email Analysis Guidelines:**
 
